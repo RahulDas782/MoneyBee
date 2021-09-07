@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'payment.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="card-success">
+        <div class='success'>
+            <span class="material-icons">
+                verified
+            </span>
+        </div>
+        <h1>
+            Payment <br> Successful
+        </h1>
+        <p>
+            Payment of INR {{ amount }} has been made.<br>
+            Remaining Balance is INR {{ balance }}
+        </p>
+        <form action="{% url 'joinRoom' %}" method="post" autocomplete='off' id='form'>
+            {% csrf_token %}
+            <input type=hidden name='name' value={{ name }}>
+            <input type=hidden name='pId' value={{ 12412 }}>
+            <input type=hidden name='rmId' value={{ room }}>
+            <input type=hidden name='roomNotExist' value=0>
+            <div>
+                Return
+                <a href="#", onclick="myFunction()">Home</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+<script>
+    function myFunction() {
+        document.getElementById("form").submit();
+    }
+</script>
+</html>

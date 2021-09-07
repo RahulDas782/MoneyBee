@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  	<head>
+		<link rel="stylesheet" href="{% static 'index.css' %}">
+		<title>Join room</title>
+
+	<script>
+	window.onload = function(){
+
+		if ({{ roomNotExist }} == 1) {
+			alert("Given Room does not Exist");
+		}
+	}
+	</script>
+
+  	</head>
+<body>
+  	<div class="section1">
+	<form action="joinRoom" method="post" autocomplete='off' class='form'>
+		{% csrf_token %}
+		<div class='control'>
+			<h1>
+			Join Room
+			</h1>
+		</div>
+		<div class='control block-cube block-input'>
+			<input name='name' placeholder='Member Name' type='text'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<div class='control block-cube block-input'>
+			<input name='pId' placeholder='Payment Id' type='text'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<div class='control block-cube block-input'>
+			<input name='rmId' placeholder='Room Id' type='text'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<button class='btn block-cube block-cube-hover' id="pay-btn" >
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='text'>
+				Join Room
+			</div>
+		</button>
+		<div >
+			<h6>
+				Want your own room ? <a href="#">Sign up</a>
+			</h6>
+		</div>
+	</form>
+	</div>
+
+	<div class="section2">
+	<form action="createRoom" method="post" autocomplete='off' class='form'>
+		{% csrf_token %}
+		<div class='control'>
+			<h1>
+				Create Room 
+			</h1>
+		</div>
+		<div class='control block-cube block-input'>
+			<input name='name' placeholder='Admin Name' type='text'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<div class='control block-cube block-input'>
+			<input name='rmId' placeholder='Room Id' type='text'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<div class='control block-cube block-input'>
+			<input name="username" placeholder='Username' type='text'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<div class='control block-cube block-input'>
+			<input type="password" name='password' placeholder='Password'>
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+		</div>
+		<button class='btn block-cube block-cube-hover' id="pay-btn">
+			<div class='bg-top'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg-right'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='bg'>
+				<div class='bg-inner'></div>
+			</div>
+			<div class='text'>
+				Create Room
+			</div>
+		</button>
+		<div class='control'>
+			<h6>
+				Join room <a href="#">Login in </a>
+			</h6>
+		</div>
+	</form>
+	</div>
+	</body>
+</html>

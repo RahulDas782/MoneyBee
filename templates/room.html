@@ -1,0 +1,104 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+  	<title>Room</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'room.css' %}">
+ 
+</head>
+<body>
+	
+	<!-- put the alert in the if else , otherwise it will show every time the webpage load
+	<div class="alert">
+		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+		Insufficient Balance 
+	</div>
+	-->
+
+	<div class="section2">
+		<form action = "confirm" method = "post" onsubmit="return validateForm()" name = "myForm" class="form">
+		{% csrf_token %}
+			<div class='control'>
+				<h1>Room: {{ roomName }}</h1>
+				<h1>Balance: {{ roomBalance }}</h1>
+			</div>
+			<div class='control block-cube block-input'>
+				<input name='amount' type='text' placeholder='Pay Amount' >
+				<div class='bg-top'>
+				  	<div class='bg-inner'></div>
+				</div>
+				<div class='bg-right'>
+				  	<div class='bg-inner'></div>
+				</div>
+				<div class='bg'>
+				  	<div class='bg-inner'></div>
+				</div>
+			</div>
+			<input type='hidden' name='roomId' value={{ roomName }}>
+
+			<button class='btn block-cube block-cube-hover' id="pay-btn" >
+				<div class='bg-top'>
+					<div class='bg-inner'></div>
+				</div>
+				<div class='bg-right'>
+					<div class='bg-inner'></div>
+				</div>
+				<div class='bg'>
+					<div class='bg-inner'></div>
+				</div>
+				<div class='text'>
+					<a>PAY NOW</a>
+				</div>
+			</button>
+		</form>
+	</div>
+	
+	
+	<div class="section1">
+	<!--
+		{{ roomName }}<br>
+		{{ roomAdmin }}<br>
+		{{ roomBalance }}<br>
+		{% for m in members %}
+			{% for i in m %}
+				{{i}}
+			{% endfor %}
+			<br>
+		{% endfor %}-->
+		<!-- members contains a 2d list containing: (Mem_Name, PayId, Balance)
+			The containers should be dynamically allocated with values -->
+
+		<div class="container">
+			{% for member in members %}
+			<div class="card">
+				<div class="face face1">
+					<div class="content">
+						<img src="{% static '1.jpg' %}">
+						<h3>{{ member.0 }}</h3>
+					</div>
+				</div>
+				<div class="face face2">
+					<div class="content">
+						<h4>Payment Id: {{ member.1 }}</h4>
+						<h4>Balance: {{ member.2 }}</h4>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>	
+	</div>
+			
+</body>
+
+<script>
+function validateForm() {
+	let x = document.forms["myForm"]["amount"].value;
+	if (x > {{ roomBalance }}) {
+		alert("Insufficient balance to make payment");
+		return false;
+	}
+}
+</script>
+</html>

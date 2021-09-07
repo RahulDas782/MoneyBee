@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Room</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'room.css' %}">
+</head>
+<body>
+		{{ roomName }}<br>
+		{{ roomAdmin }}<br>
+		{{ roomBalance }}<br>
+		{% for m in members %}
+			{% for i in m %}
+				{{i}}
+			{% endfor %}
+			<br>
+		{% endfor %}
+		<!-- members contains a 2d list containing: (Mem_Name, PayId, Balance)
+			The containers should be dynamically allocated with values -->
+
+		{% for member in members %}
+		<div class="container">
+			<div class="card">
+				<div class="face face1">
+					<div class="content">
+						<img src="{% static '1.jpg' %}">
+						<h3>{{ member.0 }}</h3>
+					</div>
+				</div>
+				<div class="face face2">
+					<div class="content">
+						Payment ID: {{ member.1 }}<br>
+						Current Balance: {{ member.2 }}
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+			
+		</div>
+		<form id = "myForm" name = "myForm">
+			{% csrf_token %}
+			<label> Enter Amount </label><br>
+			<input type="number" name="amount" placeholder="*******">
+			<input type="hidden" name="roomId" value={{ roomName }}>
+			<button class="btn" id="pay-btn">Pay 🐱‍👓</button>
+		</form>
+</body>
+
+<!-- Razorpay's Javascript code. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var x = document.getElementById("myForm")
+    var options = {
+    key: "{{ razorpay_merchant_key }}",
+    amount: x,
+    currency: "{{ currency }}",
+    name: "WebPay",
+    order_id: "{{ razorpay_order_id }}",
+    callback_url: "{{ callback_url }}",
+    };
+    
+    // initialise razorpay with the options.
+    var rzp1 = new Razorpay(options);
+    
+    // add event listener to the payment button.
+    document.getElementById("pay-btn").onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+    };
+</script>
+
+</html>

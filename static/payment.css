@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+    color: #fff;
+    font-family: monospace, serif;
+    letter-spacing: 0.05em;
+    background-color: #212121;
+    
+}
+
+h1 {
+    font-size: 40px;
+}
+
+p {
+font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card-success {
+    border-radius: 7px;
+    width: 400px;
+    border: 10px solid #00C853;
+    padding: 60px;
+    margin: 30px auto;
+}
+.card-failed {
+    border-radius: 7px;
+    width: 400px;
+    border: 10px solid #F44336;
+    padding: 60px;
+    margin: 30px auto;
+}
+
+.success {
+    line-height: 200px;
+}
+
+.failed {
+    line-height: 200px;
+}
+
+.material-icons{
+    transform: scale(5);;
+}
